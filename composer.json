@@ -1,0 +1,42 @@
+{
+    "name": "wulfheart/square-mover",
+    "description": "",
+    "keywords": [
+        "wulfheart",
+        "square-mover"
+    ],
+    "homepage": "https://github.com/wulfheart/square-mover",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Alex",
+            "email": "alex.f.wulf@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wulfheart\\SquareMover\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wulfheart\\SquareMover\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
