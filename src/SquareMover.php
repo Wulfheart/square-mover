@@ -53,5 +53,33 @@ class SquareMover
        return $squares;
     }
 
+    public function yield_squares() {
+        $x0 = $this->start_x;
+        $x1 = $this->end_x;
+        $y0 = $this->start_y;
+        $y1 = $this->end_y;
+        $squares = [];
+        $dx = abs($x1 - $x0);
+        $dy = abs($y1 - $y0);
+        $n = 1 + $dx + $dy;
+        $x = $x0;
+        $y = $y0;
+        $x_inc = $x1 > $x0 ? 1 : -1;
+        $y_inc = $y1 > $y0 ? 1 : -1;
+        $error = $dx - $dy;
+        $dx *= 2;
+        $dy *= 2;
+        for(; $n > 0; --$n){
+            yield ['x' => $x, 'y' => $y];
+            if($error > 0){
+                $x += $x_inc;
+                $error -= $dy;
+            } else {
+                $y += $y_inc;
+                $error += $dx;
+            }
+        }
+    }
+
 
 }
