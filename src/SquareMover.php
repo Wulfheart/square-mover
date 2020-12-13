@@ -29,51 +29,27 @@ class SquareMover
         $x1 = $this->end_x;
         $y0 = $this->start_y;
         $y1 = $this->end_y;
-        $dx = abs($x1 - $x0);
-        $sx = $x0 < $x1 ? 1 : -1;
-        $dy = abs($y1 - $y0);
-        $sy = $y0 < $y1 ? 1 : -1;
-        $err = ($dx > $dy ? $dx : -$dy) / 2;
-        $e2 = 0;
         $squares = [];
-        for(;;){
-            $squares[] = ['x' => $x0, 'y' => $y0];
-            if($x0 == $x1 && $y0 == $y1) break;
-            $e2 = $err;
-            if($e2 > -$dx) {
-                $err -= $dy;
-                $x0 += $sx;
-            }
-            if($e2 < $dy) {
-                $err += $dx;
-                $y0 += $sy;
+        $dx = abs($x1 - $x0);
+        $dy = abs($y1 - $y0);
+        $n = 1 + $dx + $dy;
+        $x = $x0;
+        $y = $y0;
+        $x_inc = $x1 > $x0 ? 1 : -1;
+        $y_inc = $y1 > $y0 ? 1 : -1;
+        $error = $dx - $dy;
+        $dx *= 2;
+        $dy *= 2;
+        for(; $n > 0; --$n){
+            $squares[] = ['x' => $x, 'y' => $y];
+            if($error > 0){
+                $x += $x_inc;
+                $error -= $dy;
+            } else {
+                $y += $y_inc;
+                $error += $dx;
             }
         }
-        return $squares;
-    }
-
-    public function squares2(): array {
-        $x0 = $this->start_x;
-        $x1 = $this->end_x;
-        $y0 = $this->start_y;
-        $y1 = $this->end_y;
-        $squares = [];
-       $dx = $x1 - $x0;
-       $dy = $y1 - $y0;
-       if(abs($dx) >= abs($dy)){
-           $step = abs($dx);
-       } else {
-           $step = abs($dy);
-       }
-       $dx = $dx/$step;
-       $dy = $dy/$step;
-       $x = $x0;
-       $y = $y0;
-       for($i = 0; $i <= $step; $i++){
-           $squares[] = ['x' => $x, 'y' => $y];
-           $x = $x+$dx;
-           $y = $y + $dy;
-       }
        return $squares;
     }
 

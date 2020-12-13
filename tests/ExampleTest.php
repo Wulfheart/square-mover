@@ -20,6 +20,20 @@ class Tests extends TestCase
             ],
             [
                 "start" => [0, 0],
+                "end" => [1, 2],
+                "squares" => [
+                    [0, 0], [0, 1], [1, 1], [1, 2]
+                ]
+            ],
+            [
+                "start" => [0, 0],
+                "end" => [3, -1],
+                "squares" => [
+                    [0, 0], [1, 0], [2, -1], [3, -1]
+                ]
+            ],
+            [
+                "start" => [0, 0],
                 "end" => [-3, 2],
                 "squares" => [
                     [0, 0], [-1, 0], [-1, 1], [-2, 1], [-2, 2], [-3, 2]
@@ -27,7 +41,7 @@ class Tests extends TestCase
             ]
         ];
         foreach ($bre as $b) {
-            $squares = SquareMover::from(...$b["start"])->to(...$b["end"])->squares2();
+            $squares = SquareMover::from(...$b["start"])->to(...$b["end"])->squares();
             foreach ($b["squares"] as $s) {
                 $this->assertContains([
                     "x" => floatval($s[0]),
