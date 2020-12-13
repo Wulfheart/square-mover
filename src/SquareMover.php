@@ -52,5 +52,30 @@ class SquareMover
         return $squares;
     }
 
+    public function squares2(): array {
+        $x0 = $this->start_x;
+        $x1 = $this->end_x;
+        $y0 = $this->start_y;
+        $y1 = $this->end_y;
+        $squares = [];
+       $dx = $x1 - $x0;
+       $dy = $y1 - $y0;
+       if(abs($dx) >= abs($dy)){
+           $step = abs($dx);
+       } else {
+           $step = abs($dy);
+       }
+       $dx = $dx/$step;
+       $dy = $dy/$step;
+       $x = $x0;
+       $y = $y0;
+       for($i = 0; $i <= $step; $i++){
+           $squares[] = ['x' => $x, 'y' => $y];
+           $x = $x+$dx;
+           $y = $y + $dy;
+       }
+       return $squares;
+    }
+
 
 }

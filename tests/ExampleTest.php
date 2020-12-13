@@ -27,7 +27,7 @@ class Tests extends TestCase
             ]
         ];
         foreach ($bre as $b) {
-            $squares = SquareMover::from(...$b["start"])->to(...$b["end"])->squares();
+            $squares = SquareMover::from(...$b["start"])->to(...$b["end"])->squares2();
             foreach ($b["squares"] as $s) {
                 $this->assertContains([
                     "x" => floatval($s[0]),
